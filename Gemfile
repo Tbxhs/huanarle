@@ -11,6 +11,7 @@ group :development, :test do
   gem 'mysql2'
 end
 
+gem "thin"
 
 # YAML 配置信息
 gem "settingslogic", "~> 2.0.6"
