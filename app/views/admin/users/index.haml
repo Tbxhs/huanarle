@@ -1,0 +1,16 @@
+%ul
+  %li
+    %span 用户名
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    %span 注册于
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    %span 最后登录于
+  - @users.each do |user|
+    %li
+      %span= user.login
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      %span= user.created_at.strftime('%F %T')
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      %span= user.last_login_at.strftime('%F %T')
+%p      
+  = will_paginate @users 

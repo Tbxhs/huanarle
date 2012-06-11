@@ -20,5 +20,10 @@ Spendon::Application.routes.draw do
   match 'statistics' => 'statistics#index', :as => :statistics
 
   match 'home' => 'home#index', :as => :home
+
+  namespace :admin do
+    resources :users
+  end
+
   match ':controller(/:action(/:id))(.:format)'
 end
