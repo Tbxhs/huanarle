@@ -6,6 +6,7 @@
     = yield :header_css
     = javascript_include_tag 'application'
     = yield :header_js
+    %link{ :href => image_path('favicon.ico'), :rel => 'shortcut icon', :type => 'image/vnd.microsoft.icon' }
     = csrf_meta_tags
   %body
     .public-main-container
