@@ -1,0 +1,33 @@
+$size: 12px;
+$border: 1px solid #D9DCE2;
+$color: #3B5998;
+$red: #FF0000;
+$bg: none repeat scroll 0 0 #F5F3EF;
+$w: 500px;
+
+.record_popup {
+  width: $w;
+
+  .headline {
+    clear: both;
+    height: 30px;
+    border-bottom: $border; 
+    .title { color: $color; font-size: 16px; float: left; }
+    .created_at { color: #DDD; float: right; }
+  }
+
+  ul.record_panel {
+    font-size: $size;
+    list-style: none;
+    border-bottom: $border;
+    li { padding: 4px 4px; height: 18px; }
+  }
+
+  .total { font-size: $size; padding: 4px 4px; float: right; }
+  .remarks { background: $bg; font-size: 12px; line-height: 22px; padding: 4px 4px;}
+}
+
+.user_categories {
+  width: $w;
+}
+

@@ -1,0 +1,17 @@
+- content_for :header_css do
+  = stylesheet_link_tag 'setting'
+
+= nav_tab_tag([settings_path, '基本设置'], [avatar_setting_path, '头像设置'], [reset_password_path, '修改密码'])
+.content_detail
+  .basic_setting_form
+    = render 'shared/flash_notice'
+    = form_tag settings_path do
+      .email
+        %span.title.left 邮箱：
+        = @user.email
+      .nickname
+        %span.title.left 昵称：
+        %input.form-text.w300{ :type => 'text', :value => @user.login, :name => 'login' }
+      .actions
+        %p.mt10
+          %input.button.submit{ :type => 'submit', :value => '更新' }  

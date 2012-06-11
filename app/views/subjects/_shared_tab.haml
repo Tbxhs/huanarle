@@ -1,0 +1,13 @@
+.helpbar
+  %ul
+    %li
+      %a{ :href => subjects_path, :class => params[:date].blank? ? 'checked' : nil } 全部    
+    %li
+      %a{ :href => subjects_path(:date => 'today'), :class => params[:date] == 'today' ? 'checked' : nil } 今日记录
+    %li
+      %a{ :href => subjects_path(:date => 'weekly'), :class => params[:date] == 'weekly' ? 'checked' : nil } 本周记录
+    %li
+      %a{ :href => subjects_path(:date => 'monthly'), :class => params[:date] == 'monthly' ? 'checked' : nil } 本月记录
+  %a.new_record.right{ :href => subjects_path(:at_date => params[:at_date]) }
+    = image_tag 'plus16.png'
+    %span= @at_date.nil? ? Time.now.strftime('%F') : @at_date.strftime('%F')

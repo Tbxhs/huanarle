@@ -1,0 +1,13 @@
+- content_for :header_css do
+  = stylesheet_link_tag 'blog'
+
+= nav_tab_tag([user_blogs_path(@user), '日记列表'], [new_user_blog_path(@user), '新建日记'])
+
+.content_detail
+  .blog_show_panel
+    .title
+      = @blog.title
+    .created_at
+      = @blog.created_at.strftime('%F %T')
+    .content
+      = @blog.content.html_safe

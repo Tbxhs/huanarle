@@ -1,0 +1,21 @@
+.record_popup
+  .headline
+    .title
+      = subject.title
+    .created_at
+      = subject.created_at.strftime('%F')
+  %ul.record_panel
+    - subject.consumptions.each do |consumption| 
+      %li.record.clearfix{ :class => cycle('odd', 'even') }
+        / %a.category.left.mr10
+        /   = consumption.title
+        %a.title.left
+          = consumption.title
+        %a.cost.right
+          = "￥#{consumption.cost}"
+  .total
+    = "共：#{subject.consumptions_count} 项 总计：￥#{subject.total}"
+
+  .remarks.clearfix
+    备注：
+    = subject.remarks

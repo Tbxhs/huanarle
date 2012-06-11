@@ -1,0 +1,46 @@
+$border: 1px solid #D9DCE2;
+$size: 12px;
+$color: #999999;
+
+.avatar_setting_panel {
+  padding-left: 30px;
+  .current_avatar { 
+    width: 220px;
+  }
+  .avatar_upload_form { 
+    width: 260px;
+    margin-left: 60px;
+  }
+}
+
+.reset_password_form {
+  padding-left: 30px;
+  color: $color;
+  line-height: 40px;
+  span.title {
+    width: 140px;
+    height: 20px;
+  }
+}
+
+.basic_setting_form {
+  padding-left: 30px;
+  color: $color;
+  line-height: 40px;
+  span.title {
+    width: 60px;
+    height: 20px;
+  }
+}
+
+.box_title {
+  font-size: $size;
+  border-bottom: $border;
+  padding-bottom: 3px;
+  color: $color;
+}
+
+.container_box {
+  width: auto;
+  padding-top: 10px;
+}

@@ -1,0 +1,166 @@
+$gray: #CCCCCC;
+
+body, label, input, textarea, select, button {
+  font-family: 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,'Hiragino Sans GB',sans-serif;
+}
+
+.clearfix {
+  clear: both;
+  content: "";
+  zoom: 1;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.ml10 { margin-left: 10px; }
+.mr10 { margin-right: 10px; }
+.mt10 { margin-top: 10px; }
+
+p.alert_message {
+  font-size: 12px;
+  padding-left: 3px;
+  padding-bottom: 3px;
+}
+
+p.alert_message.error { color: #FF0000; }
+p.alert_message.success { color: 'green'; }
+span.loading { font-size: 12px; color: #CCC; }
+
+li.odd { background-color: #EEEEEE; }
+
+a.tab.no-left-border { border-left: none; }
+
+a.tab {
+  display: block;
+  text-decoration: none;
+  width: 120px;
+  text-align: center;
+  height: 30px;
+  border: 1px solid #D9DCE2;
+  color: #3B5998;
+  font-weight: bold;
+  border-bottom: none;
+  margin-right: 10px;
+  line-height: 26px;    
+}
+
+a.category-select {
+  border: 1px solid #CCCCCC;
+  border-bottom: 1px solid #B7B7B7;
+  border-radius: 3px 3px 3px 3px;
+  background: white;
+  color: #3B5998;
+  height: 16px;
+  padding: 5px 5px;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  float: left;
+}
+
+textarea.remarks {
+  border: 1px solid #CCCCCC;
+  border-radius: 3px 3px 3px 3px;
+  font-size: 12px;
+  padding: 3px 3px;
+  width: 580px;
+  height: 120px;
+  line-height: 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #B7B7B7;    
+}
+
+input.submit, input[type=submit] {
+  
+}
+
+input.text.error_border { border: 1px solid #FF0000; }
+
+input.form-text {
+  border: 1px solid #CCCCCC;
+  border-radius: 3px 3px 3px 3px;
+  font-size: 14px;
+  padding: 3px 3px;
+  height: 26px;
+  line-height: 26px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #B7B7B7;
+  width: 400px;
+  background: white;
+}
+
+input.form-text.error_border { border: 1px solid #FF0000; }
+
+input.form-text.w300 {
+  width: 300px;
+  height: 20px;
+  font-size: 12px;
+}
+
+input.form-text.w680 {
+  width: 680px;
+  height: 26px;
+}
+
+input.form-text.w100 {
+  width: 100px;
+  height: 20px;
+  font-size: 12px;
+}
+
+
+
+input.text {
+  background: none repeat scroll 0 0 padding-box #E8F4FC;
+  border: 1px solid $gray;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 3px rgba(0, 0, 0, 0.3) inset;
+  color: #888888;
+  cursor: text;
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 0 18px;
+  padding: 10px 5px;
+  width: 250px;  
+}
+
+input.text:focus { background: none repeat scroll 0 0 #FFFFFF; }
+
+input.button {
+  background: none repeat scroll 0 0 #1E95E5;
+  border: 1px solid #147DCD;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 6px 15px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  vertical-align: middle;  
+}
+
+
+.notice_msg_panel {
+  font-size: 12px;
+  padding-bottom: 5px;
+}
+
+.notice_msg_panel.error {
+  color: #FF0000;
+}
+.notice_msg_panel.success {
+  color: #5BB75B;
+}
+
+
+

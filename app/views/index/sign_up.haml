@@ -1,0 +1,34 @@
+- content_for :header_js do
+  = javascript_include_tag 'sign_up_and_sign_in'
+
+.header-nav
+  .oauth-login.left
+    %a{ :href => 'javascript:;' }
+      = image_tag('weibo240.png')
+
+  .user-guide.right
+    %a.register{ :href => sign_in_path } 已有账号登录
+
+.mian-container
+  .container.clearfix
+    .login.clearfix
+      .site-desc.left
+        %p.site-name
+          花哪儿了
+        %p.desc
+          帮你在线记录日常消费的小玩具
+      .login-form.left
+        = render 'shared/flash_notice'
+        = form_tag sign_up_path, :class => 'signUp' do
+          .form-input
+            %input.text.email{ :type => 'text', :name => 'email', :default_text => '输入你的邮箱地址', :value => '输入你的邮箱地址' }
+            %p.errorMsg
+          .form-input
+            %input.text.password{ :type => 'text', :value => '输入一个安全的密码 6-20位长度' }  
+            %input.text.password_input{ :type => 'password', :name => 'password', :style => 'display:none;' }
+            %p.errorMsg
+          .form-input
+            %input.text.login_name{ :type => 'text', :name => 'login', :default_text => '输入你想要的昵称 6-20位长度', :value => '输入你想要的昵称 6-20位长度'  }
+            %p.errorMsg
+          .form-input
+            %input.button.submitBtn{ :type => 'button', :value => '注册' }

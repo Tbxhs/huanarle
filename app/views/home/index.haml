@@ -1,0 +1,37 @@
+- content_for :header_css do
+  = stylesheet_link_tag 'consumption'
+- content_for :header_js do
+  = javascript_include_tag 'new_record', 'consumption'
+
+= nav_tab_tag([subjects_path, '消费记录'], [new_subject_path, '新建消费记录'])
+
+.content_detail
+  = render 'subjects/shared_tab'
+  .records_list
+    %ul.record
+      - @subjects.each do |subject|
+        %li.record_line.clearfix{ :class => cycle('odd', 'even') }
+          %ul.record_detail
+            / %li.checkbox
+            /   = image_tag 'checkedbox16.png'
+            / %li.category
+            /   %a{ :href => 'javascript:;' } 看电影we
+            %li.description
+              / - if [2, 3].include?(i)
+              /   = image_tag 'photo16.png', :title => '有图片'
+              = subject.title   
+            %li.date
+              %a
+                = subject.created_at.strftime('%F')
+            %li.money
+              = image_tag 'money16.png'
+              = subject.total
+            %li.actions
+              %a.showDetail{ :href => 'javascript:;', :title => '快速查看', :'data-subject_id' => subject.id }
+                = image_tag 'detail16.png'
+              / %a{ :href => edit_subject_path(subject.id), :title => '编辑' }
+              /  = image_tag 'edit16.png'      
+              %a.delBtn{ :href => 'javascript:;', :title => '删除', :'data-subject_id' => subject.id }
+                = image_tag 'delete16.png'
+    .apple_pagination
+      = will_paginate @subjects

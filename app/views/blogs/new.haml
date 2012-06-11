@@ -1,0 +1,15 @@
+- content_for :header_css do
+  = stylesheet_link_tag 'blog', 'ueditor'
+- content_for :header_js do
+  = javascript_include_tag 'editor_all', 'editor_config', 'blog'
+= nav_tab_tag([user_blogs_path(@user), '日记列表'], [new_user_blog_path(@user), '新建日记'])
+
+.content_detail
+  .new_blog_form
+    = form_for @blog, :url => user_blogs_path(@user) do |f|
+      .blog_title
+        = f.text_field(:title, :class => 'form-text w680', :placeholder => '输入日志标题...')
+      .blog_content
+        = f.text_area(:content, :id => 'myEditor', :style => 'width:690px')
+      .action_buttons
+        %input.button.submit{ :type => 'button', :value => '确定' }      

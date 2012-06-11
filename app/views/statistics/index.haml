@@ -1,0 +1,84 @@
+- content_for :header_css do
+  = stylesheet_link_tag 'statistics'
+
+= nav_tab_tag([url_for, '统计概况'])
+.content_detail
+  %dl.statistics_list.left
+    %dt.orange
+      今日统计
+    %dd
+      今日总消费: 
+      %span= @day_total
+      元
+    %dd
+      一共消费: 
+      %span= @day_count
+      笔
+    %dd
+      共有主题: 
+      %span= @day_statistics.count
+      个      
+    %dd 
+      平均每笔消费:
+      %span= format '%.2f', @day_count.zero? ? 0 : (@day_total / @day_count)
+      元
+
+  %dl.statistics_list.left
+    %dt.orange
+      本周统计
+    %dd
+      本周总消费: 
+      %span= @week_total
+      元
+    %dd
+      一共消费: 
+      %span= @week_count
+      笔
+    %dd
+      共有主题: 
+      %span= @week_statistics.count
+      个      
+    %dd 
+      平均每笔消费:
+      %span= format '%.2f', @week_count.zero? ? 0 : (@week_total / @week_count)
+      元
+
+  %dl.statistics_list.left
+    %dt.orange
+      本月统计
+    %dd
+      本月总消费: 
+      %span= @month_total
+      元
+    %dd
+      一共消费: 
+      %span= @month_count
+      笔
+    %dd
+      共有主题: 
+      %span= @month_statistics.count
+      个      
+    %dd 
+      平均每笔消费:
+      %span= format '%.2f', @month_count.zero? ? 0 : (@month_total / @month_count)
+      元
+
+  %dl.statistics_list.left
+    %dt.orange
+      本年统计
+    %dd
+      本年总消费: 
+      %span= @year_total
+      元
+    %dd
+      一共消费: 
+      %span= @year_count
+      笔
+    %dd
+      共有主题: 
+      %span= @year_statistics.count
+      个      
+    %dd 
+      平均每笔消费:
+      %span= format '%.2f', @year_count.zero? ? 0 : (@year_total / @year_count)
+      元   

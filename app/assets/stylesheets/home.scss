@@ -1,0 +1,91 @@
+.hasDatepicker {
+  font: 70% "Trebuchet MS", sans-serif;
+  /*margin-left: 20px;*/
+  .ui-datepicker { width:auto;}
+}
+
+.main-container {
+  clear: both;
+  /*min-height: 500px;*/
+}
+
+.main-container {
+  .left-container {
+    /*border-right: 1px solid #D9DCE2;*/
+    float: left;
+    /*margin-right: 20px;*/
+    /*padding-top: 10px;*/
+    padding-left: 20px;
+    width: 180px;
+    height: auto;
+  }
+  .left-container .user_info { }
+  .user_info dl {
+    font-size: 12px;
+    .avatar {
+      float: left;
+    }
+    .user_name {
+      float: left;
+      margin-left: 10px;
+      font-weight: bold;
+      color: #3B5998;
+      /*padding-top: 10px;*/
+    }
+
+    .record_days {
+      float: left;
+      margin-left: 10px;
+      /*margin-top: 5px;*/
+      color: #999999;
+      p { margin-top: 3px; }
+      span { font-weight: bold; color: #000000  ; }
+    }
+  }
+  .left-container .menu {
+    padding-top: 10px;
+    ul { list-style: none; padding: 0;  }
+    ul li {
+      padding: 8px 4px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    ul li.checked { background-color: #D6DDEB; }
+    ul li:hover { background-color: #ECEFF4; }
+    ul li a {
+      display: block;
+      text-decoration: none;
+      color: #333333;
+      height: 16px;
+      line-height: 16px;
+      /*padding: 7px 10px 7px 5px;*/
+      img {
+        height: 16px;
+        margin-right: 2px;
+        vertical-align: middle;
+        width: 16px;
+      }      
+    }
+  }
+
+  .mid-container { 
+    float: left;
+    width: 740px;
+    /*border-left: 1px solid #D9DCE2;*/
+    /*border-right: 1px solid #D9DCE2;*/
+  }
+
+  .right-container {
+    float: left;
+    width: auto;
+    .calendar {
+      border: 1px solid #D9DCE2;
+      margin-left: 20px;
+      width: 250px;
+      #datepicker {
+        padding: 5px 5px;
+      }
+    }
+  }  
+}
+

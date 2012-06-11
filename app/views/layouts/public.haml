@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title 花哪儿了 - 简单记录每日消费的工具
+    = stylesheet_link_tag 'public', 'global'
+    = yield :header_css
+    = javascript_include_tag 'application'
+    = yield :header_js
+    = csrf_meta_tags
+  %body
+    .public-main-container
+      = yield
+    .footer.clearfix
+      = mail_to 'jimmy.huangjin@gmail.com', 'jimmy.huangjin@gmail.com'
+      © 2012 花哪儿了

@@ -1,0 +1,25 @@
+$size: 12px;
+
+.statistics_list {
+  font-size: 12px;
+  line-height: 22px;
+  width: 300px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+dt.orange {
+  background-color: #EEE;
+  border: 1px solid #D9DCE2;
+  padding: 3px 3px;
+  text-align: center;
+}
+
+.statistics_list dd {
+  background: none repeat scroll 0 0 #FFF;
+  border: 1px solid #D9DCE2;
+  border-top: none;
+  padding: 3px 5px;
+  span { font-weight: bold; color: #FF0000; }
+}

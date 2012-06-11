@@ -1,0 +1,21 @@
+- content_for :header_css do
+  = stylesheet_link_tag 'setting'
+
+= nav_tab_tag([settings_path, '基本设置'], [avatar_setting_path, '头像设置'], [reset_password_path, '修改密码'])
+.content_detail
+  = render 'shared/flash_notice'
+  .avatar_setting_panel.clearfix
+    = form_tag avatar_setting_path, :multipart => true do
+      .current_avatar.left
+        .box_title
+          当前头像
+        .container_box
+          = image_tag @user.avatar_url(:large)
+      .avatar_upload_form.left
+        .box_title
+          上传新头像
+        .container_box
+          = file_field_tag :avatar
+          = hidden_field_tag :avatar_cache
+          %p.mt10
+            %input.button.submit{ :type => 'submit', :value => '上传' }

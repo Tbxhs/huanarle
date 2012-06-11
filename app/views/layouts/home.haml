@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title 花哪儿了 - 简单记录每日消费的工具
+    = stylesheet_link_tag 'home', 'application', 'global', 'jquery-ui.custom'
+    = yield :header_css
+    = javascript_include_tag 'application', 'jquery-ui.custom.min'
+    = yield :header_js
+    = csrf_meta_tags
+
+  %body
+    .home-main-container
+      .header-container
+        .site-name.left
+          = link_to '花哪儿了', home_path
+        .settings.right
+          %ul
+            %li
+              = link_to @user.login, 'javascript:;', :class => 'dropdown-toggle'
+              %ul.dropdown
+                %li
+                  = link_to '账号设置', settings_path
+                %li
+                  = link_to '退出登录', sign_out_path
+      .main-container
+        .left-container
+          .user_info
+            %dl
+              %dt.avatar
+                %a{ :href => avatar_setting_path }
+                  = image_tag(@user.avatar_url(:normal), :size => '50x50')
+              %dd.user_name
+                = @user.login || 'Huang Jin'
+              %dd.record_days
+                %p
+                  已有记录
+                  %span= @user.consumptions_count
+                  笔
+                %p
+                  连续记录 
+                  %span= @user.recorded_days 
+                  天
+          .menu.clearfix
+            %ul
+              %li{ :class => params[:controller] == 'subjects' || params[:controller] == 'home' ? 'checked' : nil }
+                %a{ :href => subjects_path } 
+                  = image_tag 'spend.gif'
+                  消费
+              %li
+                %a{ :href => statistics_path }
+                  = image_tag 'income.gif'
+                  统计
+              / %li
+              /   %a{ :href => 'javascript:;' } 
+              /     = image_tag 'remander.gif'
+              /     提醒
+              %li{ :class => params[:controller] == 'blogs' ? 'checked' : nil }
+                %a{ :href => user_blogs_path(current_user) }
+                  = image_tag 'blog.gif'
+                  日记
+              %li{ :class => params[:controller] == 'settings' ? 'checked' : nil }
+                %a{ :href => settings_path }
+                  = image_tag 'setting16.png'
+                  设置                                                                  
+        .mid-container
+          = yield
+        .right-container
+          .calendar
+            .block_title
+              按照日期查看消费记录
+            #datepicker{ :setted_date => params[:at_date] }
+    .footer.clearfix
+      = mail_to 'jimmy.huangjin@gmail.com', 'jimmy.huangjin@gmail.com'
+      © 2012 花哪儿了              

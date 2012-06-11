@@ -1,0 +1,6 @@
+- if flash[:error]
+  .notice_msg_panel.error
+    %p= flash[:error]
+- if flash[:success]
+  .notice_msg_panel.success
+    %p= flash[:success]
