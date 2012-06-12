@@ -6,6 +6,8 @@
 
 .main-container {
   clear: both;
+  padding: 0 20px;
+  
   /*min-height: 500px;*/
 }
 
@@ -13,10 +15,8 @@
   .left-container {
     /*border-right: 1px solid #D9DCE2;*/
     float: left;
-    /*margin-right: 20px;*/
-    /*padding-top: 10px;*/
-    padding-left: 20px;
-    width: 180px;
+    /*padding-left: 20px;*/
+    width: 15%;    
     height: auto;
   }
   .left-container .user_info { }
@@ -24,9 +24,10 @@
     font-size: 12px;
     .avatar {
       float: left;
+      margin-right: 10px;
     }
     .user_name {
-      float: left;
+      /*float: left;*/
       margin-left: 10px;
       font-weight: bold;
       color: #3B5998;
@@ -34,7 +35,7 @@
     }
 
     .record_days {
-      float: left;
+      /*float: left;*/
       margin-left: 10px;
       /*margin-top: 5px;*/
       color: #999999;
@@ -70,17 +71,17 @@
 
   .mid-container { 
     float: left;
-    width: 740px;
+    width: 62%;
     /*border-left: 1px solid #D9DCE2;*/
     /*border-right: 1px solid #D9DCE2;*/
   }
 
   .right-container {
-    float: left;
-    width: auto;
+    float: right;
+    /*width: auto;*/
+    width: 21%;
     .calendar {
       border: 1px solid #D9DCE2;
-      margin-left: 20px;
       width: 250px;
       #datepicker {
         padding: 5px 5px;

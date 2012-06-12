@@ -4,6 +4,7 @@
  *= require 'popup'
 */
 
+
 $base-color: #FFF;
 $large-size: 20px;
 $normal-size: 12px;
@@ -13,6 +14,8 @@ $mid-size: 14px;
   margin: 0;
   padding: 0;  
 }
+
+img { border: none; }
 
 html {
   width: 100%;
