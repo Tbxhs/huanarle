@@ -11,10 +11,10 @@ group :development, :test do
   gem 'mysql2'
 end
 
-gem "thin"
+gem 'thin'
 
 # YAML 配置信息
-gem "settingslogic", "~> 2.0.6"
+gem 'settingslogic', '~> 2.0.6'
 
 # 加密处理
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -25,6 +25,14 @@ gem 'will_paginate', '~> 3.0'
 # 上传
 gem 'carrierwave', '~> 0.6.2'
 gem 'mini_magick'
+
+# 又拍云存储
+gem 'rest-client'
+gem 'carrierwave-upyun'
+
+# 第三方认证
+gem 'omniauth', '~> 1.1.0'
+gem 'omniauth-oauth2', '~> 1.0.2'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

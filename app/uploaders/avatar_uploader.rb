@@ -1,5 +1,6 @@
 # encoding: utf-8
 class AvatarUploader < BaseUploader
+  storage :upyun
 
   def default_url
     "avatar/#{version_name}.gif"

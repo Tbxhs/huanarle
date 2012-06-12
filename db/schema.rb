@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120611072648) do
+ActiveRecord::Schema.define(:version => 20120612133322) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20120611072648) do
     t.integer  "recorded_days",                    :default => 0
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
+    t.string   "weibo_uid"
+    t.string   "weibo_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

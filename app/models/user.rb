@@ -48,6 +48,25 @@ class User < ActiveRecord::Base
       end
     end
 
+
+    def find_or_create_from_auth(auth)
+      weibo_uid = auth.uid
+      return nil if weibo_uid.blank?
+      user = User.find_by_weibo_uid(weibo_uid)
+      if user.blank?
+        default_email = "#{SecureRandom.hex(3)}_weibo@huanarle.com"
+        user = User.new :email          => default_email,
+                        :login          => auth.info.name,
+                        :weibo_token    =>  auth.credentials.token
+        user.password_confirmation = user.password = SecureRandom.hex(4)
+        user.remote_avatar_url = "#{auth.info.avatar_url}/sample.jpg" # wired or upload remote image will be failed.
+        user.weibo_uid = weibo_uid
+        user.save
+      end
+      user.update_attribute(:weibo_token, auth.credentials.token)
+      user
+    end
+
     # Get current user in model.
     # def current
     #   Thread.current[:current_user]

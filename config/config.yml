@@ -1,0 +1,16 @@
+defaults: &defaults
+  upload_url: "huanarle.b0.upaiyun.com"
+  upyun_username: "huangjin"
+  upyun_password: "huangjin0819"
+  upyun_bucket: "huanarle"
+  weibo_key: "2962868635"
+  weibo_secret: "c8aef21ee5fd7764435bfba2ebdf15ee"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

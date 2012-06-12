@@ -25,5 +25,8 @@ Spendon::Application.routes.draw do
     resources :users
   end
 
+  match 'auth/weibo/callback' => 'auth#weibo_login'
+  # match 'auth/developer/callback' => 'auth#login'
+  
   match ':controller(/:action(/:id))(.:format)'
 end

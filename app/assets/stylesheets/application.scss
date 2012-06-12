@@ -57,7 +57,7 @@ body {
     list-style: none;
     a { color: $base-color; text-decoration: none;}
   }
-  a.dropdown-toggle { display: block; padding: 5px 15px; width: 100px; text-align: center; }
+  a.dropdown-toggle { display: block; padding: 5px 15px; width: 120px; text-align: center; }
   a.dropdown-toggle:after {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
@@ -82,7 +82,7 @@ body {
     display: none;
     font-size: $normal-size;
     list-style: none;
-    width: 130px;
+    width: 150px;
     zoom: 1;
     z-index: 10000;
     position: absolute;
