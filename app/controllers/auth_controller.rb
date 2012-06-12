@@ -8,7 +8,7 @@ class AuthController < ApplicationController
       self.current_user = user 
       redirect_to home_path
     rescue => e
-      raise e
+      # raise e
       flash[:error] = '授权过程中出错，请重试'
       redirect_to :root
     end
