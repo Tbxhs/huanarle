@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
         user.weibo_uid = weibo_uid
         user.save
       end
-      user.update_attribute(:weibo_token, auth.credentials.token)
+      user.update_attributes(:weibo_token => auth.credentials.token, :last_login_at => Time.now)
       user
     end
 
