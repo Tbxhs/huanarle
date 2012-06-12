@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
 
 
     def find_or_create_from_auth(auth)
-      weibo_uid = auth.uid
+      weibo_uid = auth.uid.to_s
       return nil if weibo_uid.blank?
       user = User.find_by_weibo_uid(weibo_uid)
       if user.blank?
