@@ -47,7 +47,7 @@
                 %a{ :href => subjects_path } 
                   = image_tag 'spend.gif'
                   消费
-              %li
+              %li{ :class => params[:controller] == 'statistics' ? 'checked' : nil }
                 %a{ :href => statistics_path }
                   = image_tag 'income.gif'
                   统计
