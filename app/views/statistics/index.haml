@@ -81,4 +81,6 @@
     %dd 
       平均每笔消费:
       %span= format '%.2f', @year_count.zero? ? 0 : (@year_total / @year_count)
-      元   
+      元
+  = render :partial => 'chart'
+

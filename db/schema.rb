@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612133322) do
+ActiveRecord::Schema.define(:version => 20120613063757) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(:version => 20120612133322) do
   end
 
   add_index "blogs", ["user_id"], :name => "index_blogs_on_user_id"
+
+  create_table "categories", :force => true do |t|
+    t.integer  "parent_id",  :default => 0
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "consumptions", :force => true do |t|
     t.integer  "category_id"

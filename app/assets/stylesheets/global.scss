@@ -104,6 +104,10 @@ input.form-text.w300 {
   font-size: 12px;
 }
 
+input.form-text.w160 {
+  width: 160px;
+}
+
 input.form-text.w680 {
   width: 680px;
   height: 26px;
@@ -148,6 +152,13 @@ input.button {
   text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
   vertical-align: middle;  
+}
+
+select.category {
+  font-size: 12px;
+  padding: 4px 4px; 
+  border: 1px solid #CCC;
+  color: #666666;
 }
 
 

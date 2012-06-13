@@ -16,21 +16,29 @@ class StatisticsController < ApplicationController
         instance_variable_set("@#{time}_count", count)
       end
     end
+    uncated = @user.consumptions.where(:category_id => 0).sum(&:cost).to_i
+    @chart_ary = @user.categories.collect do |category|
+      name = category.name
+      total = category.consumptions.to_a.sum(&:cost)
+      [name, total.to_i]
+    end.push(["未分类", uncated]).to_a
 
-    # @today_statistics = @user.subjects.where('created_at > ?', today)
-    # @today_total = @today_statistics.map(&:total).inject(:+)
-    # @today_count = @user.consumptions.where('created_at > ?', today).count
 
-    # @week_statistics = @user.subjects.where('created_at > ?', today.at_beginning_of_week)
-    # @week_total = @week_statistics.map(&:total).inject(:+)
-    # @week_count = @user.consumptions.where('created_at > ?', today.at_beginning_of_week).count
-
-    # @month_statistics = @user.subjects.where('created_at > ?', today.at_beginning_of_month)
-    # @month_total = @month_statistics.map(&:total).inject(:+)
-    # @month_count = @user.consumptions.where('created_at > ?', today.at_beginning_of_month).count
-
-    # @year_statistics = @user.subjects.where('created_at > ?', today.at_beginning_of_year)
-    # @year_total = @year_statistics.map(&:total).inject(:+)
-    # @year_count = @user.consumptions.where('created_at > ?', today.at_beginning_of_year).count         
   end
+
+  def chart
+    @user = current_user
+    respond_to do |format|
+      format.html {
+        @chart_ary = @user.categories.collect do |category|
+          name = category.name
+          total = category.consumptions.to_a.sum(&:cost)
+          [name, total.to_i]
+        end.to_a
+      }
+    end
+
+
+  end
+
 end

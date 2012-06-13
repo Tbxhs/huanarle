@@ -45,7 +45,6 @@ Spendon.Consumption =
           url : '/subjects/' + $(this).data('subject_id')
           dataType : 'json'
         .done (data) ->
-          console.log data
           if data.success
             $this.parents('.record_line').remove()      
 
@@ -92,11 +91,13 @@ Spendon.Consumption =
       consumptions = []
       $('input.description').each (index) ->
         name = $(this).val()
+        category_id = $(this).prev().val()
         decimal = $(this).next().next().val()
         if name.length > 1 && decimal.length > 1 && $(this).parents('dd').find('.error_border').length < 1
           consumptions[index] = 
-            name : $(this).val()
-            decimal : $(this).next().next().val()
+            name : name
+            decimal : decimal
+            category_id : category_id
 
       $dd = $('dd.blanks:last').next()
       if $('dd.blanks').find('.error_border').length > 0
@@ -112,7 +113,9 @@ Spendon.Consumption =
       if $('.new_record_form').find('.error_border').length == 0
         $('span.loading').text('提交中...')
         $.post '/subjects', params, (data) -> 
-          window.location.reload() if data.success
+          if data.success
+            alert '发表成功！'
+            window.location.reload() 
         , 'json'
 
 

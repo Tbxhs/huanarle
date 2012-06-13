@@ -4,7 +4,7 @@
   = javascript_include_tag 'category_popup', 'consumption'
 
 
-= nav_tab_tag([subjects_path, '消费记录'], [new_subject_path, '新建消费记录'])
+= nav_tab_tag([subjects_path, '消费记录'], [new_subject_path, '新建消费记录'], [subject_categories_path, '设置消费类目'])
 
 .content_detail
   = render 'subjects/shared_tab'
@@ -12,20 +12,23 @@
     %dl.new_record_form
       %dt.consumption_title
         %p
-          %input.form-text.record_title{ :type => 'text', :placeholder => '为记录添加一个主题' }
+          %input.form-text.record_title{ :type => 'text', :placeholder => '为记录添加一个主题', :value => "#{Time.now.strftime('%F')}消费记录" }
         %p.alert_message
           / asdasdasd
-      - 3.times do
-        %dd.blanks
-          / %a.category-select.mr10.select_cate{ :href => 'javascript:;' }
-          /   + 选择分类
-          %input.form-text.w300.description{ :type => 'text', :placeholder => '消费项目' }
-          = image_tag 'money16.png', :class => 'ml10'
-          %input.form-text.w100.money{ :type => 'text', :placeholder => '消费金额 0.00' }
-          %a.ml10.add_new_line{ :href => 'javascript:;', :title => '新增加一行记录' }
-            = image_tag 'greenplus16.png'
-          %a.remove_record_line{ :href => 'javascript:;', :title => '删除本行' }
-            = image_tag 'delete16.png'
+      %dd.blanks
+        / %a.category-select.mr10.select_cate{ :href => 'javascript:;' }
+        /   + 选择分类
+        %select.category
+          %option{ :value => '' } 选择消费的分类
+          - @user.categories.each do |cate|
+            %option{ :value => cate.id }= cate.name
+        %input.form-text.w300.description{ :type => 'text', :placeholder => '消费项目' }
+        = image_tag 'money16.png', :class => 'ml10'
+        %input.form-text.w100.money{ :type => 'text', :placeholder => '消费金额 0.00' }
+        %a.ml10.add_new_line{ :href => 'javascript:;', :title => '新增加一行记录' }
+          = image_tag 'greenplus16.png'
+        %a.remove_record_line{ :href => 'javascript:;', :title => '删除本行' }
+          = image_tag 'delete16.png'
       %dd
         %p.alert_message
       %dd

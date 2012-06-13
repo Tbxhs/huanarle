@@ -5,9 +5,14 @@ Spendon::Application.routes.draw do
   match 'sign_out' => 'index#sign_out', :as => :sign_out
   match 'subjects' => 'home#index', :as => :subjects, :via => :get
   # match 'consumptions/new' => 'consumptions#new', :as => :new_consumption
+  
+  match 'subjects/categories' => 'subjects#categories', :as => :subject_categories, :via => [:get, :post]
+  match 'categories/create' => 'categories#create', :as => :categories_create, :via => :post
+  match 'categories/:cate_id' => 'categories#update', :as => :categories_update, :via => :post
+  match 'categories/:cate_id' => 'categories#destroy', :as => :categories_delete, :via => :delete
+
   resources :subjects
   resources :users do
-    resources :categories
     resources :blogs
   end
 
@@ -18,6 +23,7 @@ Spendon::Application.routes.draw do
   end
 
   match 'statistics' => 'statistics#index', :as => :statistics
+  match 'statistics/chart' => 'statistics#chart', :as => :statistics_chart
 
   match 'home' => 'home#index', :as => :home
 

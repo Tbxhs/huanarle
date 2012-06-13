@@ -1,0 +1,31 @@
+- content_for :header_css do
+  = stylesheet_link_tag 'category'
+- content_for :header_js do
+  = javascript_include_tag 'category'
+
+= nav_tab_tag([subjects_path, '消费记录'], [new_subject_path, '新建消费记录'], [subject_categories_path, '设置消费类目'])
+.content_detail
+  .category_container
+    .recommand_panel
+      .left_form.left
+        = render 'shared/flash_notice'
+        = form_tag url_for do
+          %input.form-text.w160{ :type => 'text', :placeholder => '输入分类名称', :name => 'name' }
+          %input.button.new_record_submit{ :type => 'submit', :value => '添加分类' }
+      .right_list.left
+        %p.title 快速添加分类
+        .categoryList
+          - @default_cates.each do |name|
+            %a.category
+              %em + 
+              %span= name
+ 
+    .categories_list_panel
+      %p.title 我已经添加的分类
+      - @user.categories.each do |cate|
+        %dl
+          %dd.category_name{ :'data-cate_id' => cate.id, :title => '点击分类名称进行编辑' }
+            %span= cate.name
+            %input{ :type => 'text', :value => cate.name }
+          %dd.close_tag
+            x
