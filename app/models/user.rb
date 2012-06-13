@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates_presence_of :email, :login, :message => '不能为空'
   validates_uniqueness_of :email, :login, :message => '已经被注册了'
-  validates_length_of :login, :within => 6..20
+  validates_length_of :login, :within => 3..20
   validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
   has_many :blogs
@@ -55,13 +55,13 @@ class User < ActiveRecord::Base
       user = User.find_by_weibo_uid(weibo_uid)
       if user.blank?
         default_email = "#{SecureRandom.hex(3)}_weibo@huanarle.com"
-        user = User.new :email          => default_email,
-                        :login          => auth.info.name,
-                        :weibo_token    =>  auth.credentials.token
+        user = User.new
+        user.email = default_email
+        user.login = auth.info.name
         user.password_confirmation = user.password = SecureRandom.hex(4)
         user.remote_avatar_url = "#{auth.info.avatar_url}/sample.jpg" # wired or upload remote image will be failed.
         user.weibo_uid = weibo_uid
-        user.save
+        user.save!
       end
       user.update_attributes(:weibo_token => auth.credentials.token, :last_login_at => Time.now)
       user

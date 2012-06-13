@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
       clear_login_state
       flash[:error] = '请登录后访问'
       redirect_to root_path
+      return
     end
   end
 
