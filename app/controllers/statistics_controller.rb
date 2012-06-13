@@ -16,7 +16,7 @@ class StatisticsController < ApplicationController
         instance_variable_set("@#{time}_count", count)
       end
     end
-    uncated = @user.consumptions.where(:category_id => 0).sum(&:cost).to_i
+    uncated = @user.consumptions.where('category_id = 0 OR category_id is NULL').sum(&:cost).to_i
     @chart_ary = @user.categories.collect do |category|
       name = category.name
       total = category.consumptions.to_a.sum(&:cost)
