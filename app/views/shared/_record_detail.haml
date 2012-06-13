@@ -5,10 +5,10 @@
     .created_at
       = subject.created_at.strftime('%F')
   %ul.record_panel
-    - subject.consumptions.each do |consumption| 
+    - subject.consumptions.includes(:category).each do |consumption| 
       %li.record.clearfix{ :class => cycle('odd', 'even') }
-        / %a.category.left.mr10
-        /   = consumption.title
+        %a.category.left
+          = "[#{consumption.try(:category).try(:name) || '未分类'}]"
         %a.title.left
           = consumption.title
         %a.cost.right

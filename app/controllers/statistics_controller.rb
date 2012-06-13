@@ -21,7 +21,9 @@ class StatisticsController < ApplicationController
       name = category.name
       total = category.consumptions.to_a.sum(&:cost)
       [name, total.to_i]
-    end.push(["未分类", uncated]).to_a
+    end
+    @chart_ary ||= []
+    @chart_ary = @chart_ary.push(["未分类", uncated]).to_a
 
 
   end
