@@ -71,7 +71,10 @@
               按照日期查看消费记录
             #datepicker{ :setted_date => params[:at_date] }
     .footer.clearfix
-      = mail_to 'jimmy.huangjin@gmail.com', 'jimmy.huangjin@gmail.com'
-      © 2012 花哪儿了
+      %p
+        推荐使用 Chrome 或 Firefox 浏览器获取最佳浏览体验
+      %p
+        = mail_to 'jimmy.huangjin@gmail.com', 'jimmy.huangjin@gmail.com'
+        © 2012 花哪儿了
       
 = render 'shared/google_analytics'                    

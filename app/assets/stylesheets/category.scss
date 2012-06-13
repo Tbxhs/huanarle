@@ -55,7 +55,7 @@ $size: 12px;
       float: left;
       border: 1px solid #3B5998;
       margin: 5px 5px;
-      dd { float: left; padding: 3px 4px; }
+      dd { float: left; padding: 3px 4px; height: 20px;}
       dd.category_name { input { display: none; width: 60px; } }
       dd.close_tag { border-left: 1px solid #3B5998; width: 16px; text-align: center; cursor: pointer; }
       dd.close_tag:hover { background: none repeat scroll 0 0 #3B5998; color: #FFFFFF; }
