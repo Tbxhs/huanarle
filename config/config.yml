@@ -5,6 +5,7 @@ defaults: &defaults
   upyun_bucket: "huanarle"
   weibo_key: "2962868635"
   weibo_secret: "c8aef21ee5fd7764435bfba2ebdf15ee"
+  admin_user_email: 'bzu_2007@126.com'
 
 development:
   <<: *defaults

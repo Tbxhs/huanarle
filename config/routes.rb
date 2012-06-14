@@ -28,7 +28,12 @@ Spendon::Application.routes.draw do
   match 'home' => 'home#index', :as => :home
 
   namespace :admin do
-    resources :users
+    resources :users, :only => :index do
+      collection do
+        get :user_blogs
+        get :user_subjects
+      end
+    end
   end
 
   match 'auth/weibo/callback' => 'auth#weibo_login'

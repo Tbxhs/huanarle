@@ -1,16 +1,13 @@
-%ul
-  %li
-    %span 用户名
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    %span 注册于
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    %span 最后登录于
-  - @users.each do |user|
-    %li
-      %span= user.login
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      %span= user.created_at.strftime('%F %T')
-      &nbsp;&nbsp;&nbsp;&nbsp;
+- @users.each do |user|
+  %dl{ :class => cycle('odd', 'even') }
+    %dd.left= user.login
+    %dd.right
+      最后登录时间：
       %span= user.last_login_at.strftime('%F %T')
-%p      
+    %dd.right{ :style => 'margin-right:15px;' }
+      注册于：
+      %span= user.created_at.strftime('%F %T')
+
+
+.paginate      
   = will_paginate @users 

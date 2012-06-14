@@ -1,0 +1,17 @@
+- @subjects.each do |subject|
+  %dl{ :class => cycle('odd', 'even') }
+    %dd.left
+      = subject.title
+    %dd.right
+      总消费：
+      %span= subject.total
+    %dd.right{ :style => 'margin-right:15px;' }
+      用户：
+      %span= subject.user.login
+    %dd.right{ :style => 'margin-right:15px;' }
+      发表于：
+      %span= subject.created_at.strftime('%F %T')
+
+
+.paginate      
+  = will_paginate @subjects 

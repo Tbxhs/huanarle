@@ -7,9 +7,16 @@
     = csrf_meta_tags
   %body
     .manage_panel
-      = yield
-    .footer.clearfix
-      = mail_to 'jimmy.huangjin@gmail.com', 'jimmy.huangjin@gmail.com'
-      © 2012 花哪儿了
-      
-= render 'shared/google_analytics'
+      .navigation
+        %ul
+          %li
+            %a{ :href => admin_users_path } 新注册用户
+          %li
+            %a{ :href => admin_users_path(:order_by => 'login_time') } 最近有登录的用户
+          %li
+            %a{ :href => user_blogs_admin_users_path } 日志列表
+          %li
+            %a{ :href => user_subjects_admin_users_path } 主题列表
+
+      .list_container                                    
+        = yield

@@ -1,0 +1,14 @@
+- @blogs.each do |blog|
+  %dl{ :class => cycle('odd', 'even') }
+    %dd.left
+      = link_to blog.title, user_blog_path(blog.user_id, blog.id)
+    %dd.right
+      作者：
+      %span= blog.user.login
+    %dd.right{ :style => 'margin-right:15px;' }
+      发表于：
+      %span= blog.created_at.strftime('%F %T')
+
+
+.paginate      
+  = will_paginate @blogs 
