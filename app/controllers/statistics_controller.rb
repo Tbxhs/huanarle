@@ -16,31 +16,33 @@ class StatisticsController < ApplicationController
         instance_variable_set("@#{time}_count", count)
       end
     end
-    uncated = @user.consumptions.where('category_id = 0 OR category_id is NULL').sum(&:cost).to_i
-    @chart_ary = @user.categories.collect do |category|
-      name = category.name
-      total = category.consumptions.to_a.sum(&:cost)
-      [name, total.to_i]
-    end
-    @chart_ary ||= []
-    @chart_ary = @chart_ary.push(["未分类", uncated]).to_a
-
 
   end
 
   def chart
     @user = current_user
-    respond_to do |format|
-      format.html {
-        @chart_ary = @user.categories.collect do |category|
-          name = category.name
-          total = category.consumptions.to_a.sum(&:cost)
-          [name, total.to_i]
-        end.to_a
-      }
+    uncated = @user.consumptions.where('category_id = 0 OR category_id is NULL').sum(&:cost).to_i
+    @pie_chart_ary = @user.categories.collect do |category|
+      name = category.name
+      total = category.consumptions.to_a.sum(&:cost)
+      [name, total.to_i]
     end
+    @pie_chart_ary ||= []
+    @pie_chart_ary = @pie_chart_ary.push(["未分类", uncated]).to_a
 
+    last_time = Time.now.at_beginning_of_month
+    first_time = last_time.ago(4.months)
+    second_time = last_time.ago(3.months)
+    third_time = last_time.ago(2.months)
+    fifth_time = last_time.ago(1.months)
 
+    @area_chart_ary = [first_time, second_time, third_time, fifth_time, last_time].collect do |end_time|
+      time = "#{end_time.month}月"
+      total = @user.subjects
+        .where('created_at > ? and created_at < ?', end_time, end_time.since(1.month))
+        .sum(&:total)
+      [time, total.to_f]
+    end.insert(0, ['月份', '消费总额'])
   end
 
 end

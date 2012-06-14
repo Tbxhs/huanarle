@@ -1,7 +1,7 @@
 - content_for :header_css do
   = stylesheet_link_tag 'statistics'
 
-= nav_tab_tag([statistics_path, '统计概况'], [url_for, '饼状图'])
+= nav_tab_tag([statistics_chart_path, '统计图'], [statistics_path, '概况'])
 .content_detail
   %script{ :type => 'text/javascript', :src => 'https://www.google.com/jsapi' }
   :javascript    
@@ -9,28 +9,43 @@
     google.load('visualization', '1.0', {'packages':['corechart']});
     
     // Set a callback to run when the Google Visualization API is loaded.
-    google.setOnLoadCallback(drawChart);
+    google.setOnLoadCallback(drawPieChart);
 
     // Callback that creates and populates a data table, 
     // instantiates the pie chart, passes in the data and
     // draws it.
-    function drawChart() {
+    function drawPieChart() {
 
       // Get Data.
       // Create the data table.
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Topping');
       data.addColumn('number', 'Slices');
-      data.addRows(#{@chart_ary});
+      data.addRows(#{@pie_chart_ary});
 
       // Set chart options
-      var options = {'title':'How Much Pizza I Ate Last Night',
-                     'width':400,
-                     'height':300};
+      var options = {'title':'我的消费构成',
+                     'width':500,
+                     'height':500};
 
       // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      var chart = new google.visualization.PieChart(document.getElementById('chart_pie_div'));
       chart.draw(data, options);
 
     }
-  #chart_div{ :style => 'width:400px;height:300px;' }
+
+    google.setOnLoadCallback(drawAreaChart);
+
+    function drawAreaChart() {
+      var data = google.visualization.arrayToDataTable(#{@area_chart_ary});
+
+      var options = {
+        title: '我的花钱趋势'
+      };
+
+      var area_chart = new google.visualization.AreaChart(document.getElementById('chart_area_div'));
+      area_chart.draw(data, options);
+    }
+
+  #chart_area_div{ :style => 'width:600px;height:300px;' }
+  #chart_pie_div{ :style => 'width:500px;height:500px;' }
