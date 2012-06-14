@@ -15,6 +15,17 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  after_create :sync_to_weibo
+  def sync_to_weibo
+    if self.weibo_token.present?
+      Faraday.post 'https://api.weibo.com/2/statuses/update.json', { 
+        :status            => '我连接了 [花哪儿了] ，简单记录日常消费 http://www.huanarle.com',
+        :access_token      => self.weibo_token
+      }
+    end
+  end
+
+
   def reset_password(orig_password, new_password, new_password_confirmation)
     return [false, '原密码输入错误'] unless self.authenticate(orig_password)
     return [false, '密码至少为6位'] if new_password.length < 6 || new_password.length > 40

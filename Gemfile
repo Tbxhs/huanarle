@@ -6,11 +6,11 @@ gem 'rails', '3.2.3'
 group :production do
   gem 'pg'
 end
-
 group :development, :test do
   gem 'mysql2'
 end
 
+# Server
 gem 'thin'
 
 # YAML 配置信息
@@ -33,6 +33,9 @@ gem 'carrierwave-upyun'
 # 第三方认证
 gem 'omniauth', '~> 1.1.0'
 gem 'omniauth-oauth2', '~> 1.0.2'
+
+# HTTP Client
+gem 'faraday', '~> 0.8.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
