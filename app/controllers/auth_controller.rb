@@ -6,7 +6,7 @@ class AuthController < ApplicationController
       auth = request.env["omniauth.auth"]
       user = User.find_or_create_from_auth(auth)
       self.current_user = user
-      user.sync_to_weibo 
+      # user.sync_to_weibo 
     rescue => e
       # raise e
       flash[:error] = '授权过程中出错，请重试'
