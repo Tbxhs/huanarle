@@ -7,6 +7,8 @@
     = javascript_include_tag 'application', 'jquery-ui-1.8.17.custom.min', 'memo'
     = yield :header_js
     %link{ :href => image_path('favicon.ico'), :rel => 'shortcut icon', :type => 'image/vnd.microsoft.icon' }
+    %meta{ :name => 'keywords', :content => '花哪儿了，随手记，简单记录消费工具，Ruby, Rails' }
+    %meta{ :name => 'description', :content => '一个简洁的在线记录每日消费的工具' }
     = csrf_meta_tags
 
   %body

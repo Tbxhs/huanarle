@@ -85,7 +85,7 @@ Spendon.Consumption =
         setStatus(true, $input)
 
     $('input.new_record_submit').click ->
-      validateTitle()
+      # validateTitle()
       validateRecordName()
       validateDecimal()
       consumptions = []

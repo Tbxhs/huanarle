@@ -12,7 +12,7 @@ class SubjectsController < ApplicationController
   def create
     begin
       Subject.transaction do
-        subject = @user.subjects.create(:title => params[:title], :remarks => params[:remarks])
+        subject = Subject.find_or_create_by_user_id_and_datetime(@user.id, Time.now.at_beginning_of_day)
         params[:consumptions].each do |k, v|
           subject.consumptions.create :title        =>   v['name'], 
                                       :cost         =>   v['decimal'].to_d, 

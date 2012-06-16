@@ -8,6 +8,9 @@
     = yield :header_js
     %link{ :href => image_path('favicon.ico'), :rel => 'shortcut icon', :type => 'image/vnd.microsoft.icon' }
     = csrf_meta_tags
+    %meta{ :name => 'keywords', :content => '花哪儿了，随手记，简单记录消费工具，Ruby, Rails' }
+    %meta{ :name => 'description', :content => '一个简洁的在线记录每日消费的工具' }
+
   %body
     .public-main-container
       = yield

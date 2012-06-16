@@ -91,7 +91,7 @@
       /*font-weight: bold;*/
       color: #666666;
       font-size: 14px;
-      p {  display: inline;  line-height: 1.8em; }
+      p {  display: inline;  line-height: 1.8em; word-wrap: break-word; }
       p:hover { background-color: #DDDDDD; }
       textarea { 
         width: 100%; 
@@ -105,10 +105,6 @@
         color: #666666;
       }
     }
-
-
-
-
 
     .calendar {
       border: 1px solid #D9DCE2;

@@ -7,17 +7,14 @@
 = nav_tab_tag([subjects_path, '消费记录'], [new_subject_path, '新建消费记录'], [subject_categories_path, '设置消费类目'])
 
 .content_detail
-  / = render 'subjects/shared_tab'
   .new_record_panel
     %dl.new_record_form
-      %dt.consumption_title
-        %p
-          %input.form-text.record_title{ :type => 'text', :placeholder => '为记录添加一个主题', :value => "#{Time.now.strftime('%F')}消费记录" }
-        %p.alert_message
-          / asdasdasd
+      / %dt.consumption_title
+      /   %p
+      /     %input.form-text.record_title{ :type => 'text', :placeholder => '为记录添加一个主题', :value => "#{Time.now.strftime('%F')}消费记录" }
+      /   %p.alert_message
+      /     / asdasdasd
       %dd.blanks
-        / %a.category-select.mr10.select_cate{ :href => 'javascript:;' }
-        /   + 选择分类
         %select.category
           %option{ :value => '' } 选择消费的分类
           - @user.categories.each do |cate|
@@ -30,12 +27,7 @@
         %a.remove_record_line{ :href => 'javascript:;', :title => '删除本行' }
           = image_tag 'delete16.png'
       %dd
-        %p.alert_message
-      %dd
-        %textarea.remarks{ :placeholder => '添加备注信息...' }
-      / %dd.upload_images
-      /   %span 上传图片：
-      /   %input{ :type => 'file', :value => 'qewqe' }
-      %dd.buttons
+        %p.alert_message.mt10
+      %dd.buttons.mt10
         %input.button.new_record_submit{ :type => 'submit', :value => '确定' }
         %span.loading
