@@ -33,8 +33,5 @@ class HomeController < ApplicationController
       cost_json = { :title => "￥#{total}", :start => day }.to_json
       [count_json, cost_json]
     end.flatten
-
-    p @json_ary
-
   end
 end
