@@ -3,7 +3,7 @@ class AddMemoTable < ActiveRecord::Migration
     create_table :memos do |t|
       t.integer :id
       t.integer :user_id
-      t.text :content, :null => false, :limit => 300
+      t.text :content, :null => false
       t.timestamps
     end    
   end
