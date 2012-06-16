@@ -4,7 +4,7 @@
     %title 花哪儿了 - 简单记录每日消费的工具
     = stylesheet_link_tag 'home', 'application', 'global', 'jquery-ui.custom'
     = yield :header_css
-    = javascript_include_tag 'application', 'jquery-ui.custom.min'
+    = javascript_include_tag 'application', 'jquery-ui-1.8.17.custom.min', 'memo'
     = yield :header_js
     %link{ :href => image_path('favicon.ico'), :rel => 'shortcut icon', :type => 'image/vnd.microsoft.icon' }
     = csrf_meta_tags
@@ -66,10 +66,10 @@
         .mid-container
           = yield
         .right-container
-          .calendar
-            .block_title
-              按照日期查看消费记录
-            #datepicker{ :setted_date => params[:at_date] }
+          .memo
+            .text
+              %p{ :title => '点击可以编辑' }= @user.memos.last.try(:content) || '这里是便笺，你可以随意写点什么，点击开始编辑'
+              %textarea
     .footer.clearfix
       %p
         推荐使用 Chrome 或 Firefox 浏览器获取最佳浏览体验

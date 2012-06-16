@@ -34,6 +34,18 @@ class SubjectsController < ApplicationController
     end
   end
 
+  def filter_by_datetime
+    time = Date.parse(params[:datetime].to_s).at_beginning_of_day
+    consumptions = @user.consumptions.where('created_at > ? and created_at < ?', time, time.end_of_day)
+    total = consumptions.sum(&:cost)
+    respond_to do |format|
+      format.js {
+        html_str = render_to_string(:partial => 'shared/record_detail', :locals => { :consumptions => consumptions, :time => time, :total => total })
+        render_to_json(:success => true, :html => html_str)
+      }
+    end
+  end
+
   def edit
     @subject = Subject.find params[:id]
   end

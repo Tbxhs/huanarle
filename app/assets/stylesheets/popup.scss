@@ -21,6 +21,7 @@ $w: 500px;
     list-style: none;
     border-bottom: $border;
     li { padding: 4px 4px; height: 18px; }
+    a.category { color: $color; padding-right: 5px; font-weight: bold; }
   }
 
   .total { font-size: $size; padding: 4px 4px; float: right; }

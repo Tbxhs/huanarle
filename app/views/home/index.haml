@@ -1,37 +1,52 @@
 - content_for :header_css do
-  = stylesheet_link_tag 'consumption'
+  = stylesheet_link_tag 'cupertino/theme', 'fullcalendar'
+  = stylesheet_link_tag 'fullcalendar.print', :media => 'print'
+
 - content_for :header_js do
-  = javascript_include_tag 'new_record', 'consumption'
+  = javascript_include_tag 'new_record', 'consumption', 'fullcalendar.min'
 
 = nav_tab_tag([subjects_path, '消费记录'], [new_subject_path, '新建消费记录'], [subject_categories_path, '设置消费类目'])
 
 .content_detail
-  = render 'subjects/shared_tab'
-  .records_list
-    %ul.record
-      - @subjects.each do |subject|
-        %li.record_line.clearfix{ :class => cycle('odd', 'even') }
-          %ul.record_detail
-            / %li.checkbox
-            /   = image_tag 'checkedbox16.png'
-            / %li.category
-            /   %a{ :href => 'javascript:;' } 看电影we
-            %li.description
-              / - if [2, 3].include?(i)
-              /   = image_tag 'photo16.png', :title => '有图片'
-              = subject.title   
-            %li.date
-              %a
-                = subject.created_at.strftime('%F')
-            %li.money
-              = image_tag 'money16.png'
-              = subject.total
-            %li.actions
-              %a.showDetail{ :href => 'javascript:;', :title => '快速查看', :'data-subject_id' => subject.id }
-                = image_tag 'detail16.png'
-              / %a{ :href => edit_subject_path(subject.id), :title => '编辑' }
-              /  = image_tag 'edit16.png'      
-              %a.delBtn{ :href => 'javascript:;', :title => '删除', :'data-subject_id' => subject.id }
-                = image_tag 'delete16.png'
-    .apple_pagination
-      = will_paginate @subjects
+  #calendar
+
+:javascript
+  $(document).ready(function() {
+    var events_ary = #{@json_ary};
+    for (var i=0; i<events_ary.length; i++) {
+      events_ary[i] = $.parseJSON(events_ary[i]);
+    }
+
+    $('#calendar').fullCalendar({
+      theme: true,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,basicWeek,basicDay'
+      },
+
+      eventRender: function(event, element) {
+        element.bind('click', function() {
+          var url = '/subjects/filter_by_datetime';
+          $.get(url, { datetime : event.start }, function(data){
+            if (data.success)
+              Spendon.dialog($(data.html));
+          }, 'json'); 
+        });
+        // alert shows up in linux chrome, but messes up draggable
+      },      
+      monthNames : ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      monthNamesShort : ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      dayNamesShort: ['日','一','二','三','四','五','六'],
+      dayNames: ['周日','周一','周二','周三','周四','周五','周六'],
+      editable: true,
+      buttonText: {
+        today: '今日',
+        month: '本月',
+        week: '本周',
+        day: '今日'
+      },
+      events: events_ary
+    });
+  });
+

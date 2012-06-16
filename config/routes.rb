@@ -11,10 +11,17 @@ Spendon::Application.routes.draw do
   match 'categories/:cate_id' => 'categories#update', :as => :categories_update, :via => :post
   match 'categories/:cate_id' => 'categories#destroy', :as => :categories_delete, :via => :delete
 
-  resources :subjects
+  resources :subjects do
+    collection do
+      get :filter_by_datetime
+    end
+  end
+
   resources :users do
     resources :blogs
   end
+
+  match 'memo/update' => 'memos#update', :as => :update_memo, :via => :post
 
   scope 'settings', :controller => 'settings' do
     match 'basic', :as => :settings, :via => [:get, :post]

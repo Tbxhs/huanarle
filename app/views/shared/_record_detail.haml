@@ -1,11 +1,11 @@
 .record_popup
   .headline
     .title
-      = subject.title
+      = "#{time.strftime('%F')} 消费记录"
     .created_at
-      = subject.created_at.strftime('%F')
+      = ''
   %ul.record_panel
-    - subject.consumptions.includes(:category).each do |consumption| 
+    - consumptions.includes(:category).each do |consumption| 
       %li.record.clearfix{ :class => cycle('odd', 'even') }
         %a.category.left
           = "[#{consumption.try(:category).try(:name) || '未分类'}]"
@@ -13,9 +13,9 @@
           = consumption.title
         %a.cost.right
           = "￥#{consumption.cost}"
-  .total
-    = "共：#{subject.consumptions_count} 项 总计：￥#{subject.total}"
+  .total{ :style => 'font-weight: bold;' }
+    = "共：#{consumptions.size} 项 总计：￥#{total}"
 
-  .remarks.clearfix
-    备注：
-    = subject.remarks
+  / .remarks.clearfix
+  /   备注：
+  /   / = subject.remarks

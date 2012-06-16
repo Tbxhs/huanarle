@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :categories
   has_many :subjects
   has_many :consumptions
+  has_many :memos
 
   mount_uploader :avatar, AvatarUploader
 

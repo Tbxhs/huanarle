@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120615082236) do
+ActiveRecord::Schema.define(:version => 20120616083225) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(:version => 20120615082236) do
   end
 
   add_index "executers", ["task_title"], :name => "index_executers_on_task_title"
+
+  create_table "memos", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "subjects", :force => true do |t|
     t.string   "title"
