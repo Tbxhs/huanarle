@@ -20,6 +20,7 @@ class SubjectsController < ApplicationController
       end
       render_to_json(:success => true)
     rescue => e
+      logger.error e
       render_to_json(:success => false)
     end
   end
