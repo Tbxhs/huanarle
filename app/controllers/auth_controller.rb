@@ -8,7 +8,7 @@ class AuthController < ApplicationController
       self.current_user = user
       # user.sync_to_weibo 
     rescue => e
-      # raise e
+      logger.error e
       flash[:error] = '授权过程中出错，请重试'
     end
     redirect_to home_path
