@@ -23,6 +23,8 @@ Spendon.Memo =
           $this.prev().text(val).show()
           $this.hide()
         , 'json'
+    .keydown (e) -> 
+      $(this).blur() if e.keyCode == 13
 
 $(document).ready ->
   Spendon.Memo.init()
