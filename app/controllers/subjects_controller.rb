@@ -11,14 +11,16 @@ class SubjectsController < ApplicationController
 
   def create
     begin
-      subject = @user.subjects.create(:title => params[:title], :remarks => params[:remarks])
-      params[:consumptions].each do |k, v|
-        subject.consumptions.create :title        =>   v['name'], 
-                                    :cost         =>   v['decimal'].to_d, 
-                                    :user_id      =>   @user.id,
-                                    :category_id  =>   v['category_id'].to_i
+      Subject.transaction do
+        subject = @user.subjects.create(:title => params[:title], :remarks => params[:remarks])
+        params[:consumptions].each do |k, v|
+          subject.consumptions.create :title        =>   v['name'], 
+                                      :cost         =>   v['decimal'].to_d, 
+                                      :user_id      =>   @user.id,
+                                      :category_id  =>   v['category_id'].to_i
+        end
+        render_to_json(:success => true)
       end
-      render_to_json(:success => true)
     rescue => e
       logger.error e
       render_to_json(:success => false)
