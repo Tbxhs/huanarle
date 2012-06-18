@@ -40,9 +40,12 @@ Spendon::Application.routes.draw do
       collection do
         get :user_blogs
         get :user_subjects
+        get :user_feed_backs
       end
     end
   end
+
+  match 'feed_backs' => 'feed_backs#create', :as => :feed_backs, :via => :post
 
   match 'auth/weibo/callback' => 'auth#weibo_login'
   # match 'auth/developer/callback' => 'auth#login'

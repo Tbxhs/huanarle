@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :subjects
   has_many :consumptions
   has_many :memos
+  has_many :feed_backs
 
   mount_uploader :avatar, AvatarUploader
 

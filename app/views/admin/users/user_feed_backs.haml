@@ -1,0 +1,11 @@
+- @feed_backs.each do |feed_back|
+  %dl{ :class => cycle('odd', 'even') }
+    %dd.left
+      = feed_back.content
+    %dd.right{ :style => 'margin-right:15px;' }
+      用户：
+      %span= feed_back.user.login
+
+
+.paginate      
+  = will_paginate @feed_backs 

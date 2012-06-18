@@ -20,6 +20,10 @@ class Admin::UsersController < ApplicationController
     @subjects = Subject.includes(:user).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
   end
 
+  def user_feed_backs
+    @feed_backs = FeedBack.includes(:user).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+  end
+
   private
 
   def validate_administrator

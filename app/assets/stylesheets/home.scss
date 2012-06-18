@@ -11,6 +11,23 @@
   /*min-height: 500px;*/
 }
 
+.feedback_btn {
+  width: 16px;
+  height: 60px;
+  background-color: #147DCD;
+  text-align: center;
+  padding: 5px 5px;
+  border-radius: 0 5px 5px 0px;
+  box-shadow: 5px 5px 5px #666666;
+  position: fixed;
+  color: #FFF;
+  left: 0px;
+  top: 460px;
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
 .main-container {
   .left-container {
     /*border-right: 1px solid #D9DCE2;*/
