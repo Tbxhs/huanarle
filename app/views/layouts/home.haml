@@ -75,17 +75,15 @@
             .text
               %p{ :title => '点击可以编辑' }= @user.memos.last.try(:content) || '这里是便笺，你可以随意写点什么，点击开始编辑'
               %textarea
-          .ads
-            %p 合作网站推荐
-            .ad{ :align => 'center' }
-              %a{ :href => '#' }
-                = image_tag 'huanarle.jpg'
     .footer.clearfix
       %p
         推荐使用 Chrome 或 Firefox 浏览器获取最佳浏览体验
       %p
         = mail_to 'jimmy.huangjin@gmail.com', 'jimmy.huangjin@gmail.com'
         © 2012 花哪儿了
+      .friend_sites
+        友情链接：
+        %a{ :href => 'http://720p.so', :target => '_blank' } 720p.so
 
     .feedback_btn.feedBack
       反馈建议
