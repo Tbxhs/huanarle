@@ -75,6 +75,11 @@
             .text
               %p{ :title => '点击可以编辑' }= @user.memos.last.try(:content) || '这里是便笺，你可以随意写点什么，点击开始编辑'
               %textarea
+          .ads
+            %p 合作网站推荐
+            .ad{ :align => 'center' }
+              %a{ :href => '#' }
+                %img{ :src => '/huanarle.jpg' }
     .footer.clearfix
       %p
         推荐使用 Chrome 或 Firefox 浏览器获取最佳浏览体验
