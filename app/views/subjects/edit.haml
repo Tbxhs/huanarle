@@ -1,7 +1,7 @@
 - content_for :header_css do
   = stylesheet_link_tag 'consumption'
 - content_for :header_js do
-  = javascript_include_tag 'category_popup', 'consumption'
+  = javascript_include_tag 'category_popup'
 
 
 = nav_tab_tag([subjects_path, '消费记录'], [new_subject_path, '新建消费记录'], [subject_categories_path, '设置消费类目'])

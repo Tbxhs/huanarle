@@ -104,6 +104,12 @@ input.form-text.w300 {
   font-size: 12px;
 }
 
+input.form-text.w200 {
+  width: 200px;
+  height: 20px;
+  font-size: 12px;
+}
+
 input.form-text.w160 {
   width: 160px;
 }
@@ -158,6 +164,7 @@ select.category {
   font-size: 12px;
   padding: 4px 4px; 
   border: 1px solid #CCC;
+  border-radius: 5px 5px 5px 5px;
   color: #666666;
 }
 

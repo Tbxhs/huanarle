@@ -10,6 +10,7 @@ Spendon::Application.routes.draw do
   match 'categories/create' => 'categories#create', :as => :categories_create, :via => :post
   match 'categories/:cate_id' => 'categories#update', :as => :categories_update, :via => :post
   match 'categories/:cate_id' => 'categories#destroy', :as => :categories_delete, :via => :delete
+  # match 'categories/get_categories' => 'categories#get_categories', :as => :get_categories, :via => :get
 
   resources :subjects do
     collection do

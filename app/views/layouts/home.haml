@@ -4,13 +4,14 @@
     %title 花哪儿了 - 简单记录每日消费的工具
     = stylesheet_link_tag 'home', 'application', 'global', 'jquery-ui.custom'
     = yield :header_css
-    = javascript_include_tag 'application', 'jquery-ui-1.8.17.custom.min', 'memo'
+    = javascript_include_tag 'application', 'jquery-ui-1.8.17.custom.min', 'memo', 'consumption'
     = yield :header_js
     %link{ :href => image_path('favicon.ico'), :rel => 'shortcut icon', :type => 'image/vnd.microsoft.icon' }
     %meta{ :name => 'keywords', :content => '花哪儿了，随手记，简单记录消费工具，Ruby, Rails' }
     %meta{ :name => 'description', :content => '一个简洁的在线记录每日消费的工具' }
     = csrf_meta_tags
-
+    :javascript
+      Spendon.user_categories = #{current_user.categories.select([:id, :name]).collect{ |cate| [cate.id, cate.name] }}
   %body
     .home-main-container
       .header-container
@@ -51,7 +52,7 @@
                   消费
               %li{ :class => params[:controller] == 'statistics' ? 'checked' : nil }
                 %a{ :href => statistics_chart_path }
-                  = image_tag 'income.gif'
+                  = image_tag 'statistics16.png'
                   统计
               / %li
               /   %a{ :href => 'javascript:;' } 
@@ -68,6 +69,8 @@
         .mid-container
           = yield
         .right-container
+          .new_consumptions{ :align => 'center' }
+            %input.button.new_record_submit.newConsumption{ :type => 'submit', :value => '新建消费记录' }
           .memo
             .text
               %p{ :title => '点击可以编辑' }= @user.memos.last.try(:content) || '这里是便笺，你可以随意写点什么，点击开始编辑'

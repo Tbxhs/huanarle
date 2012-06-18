@@ -12,6 +12,14 @@ class CategoriesController < ApplicationController
     end    
   end
 
+  def get_categories
+    categories = current_user.categories.select([:id, :name]).collect do |cate|
+      [cate.id, cate.name]
+    end.insert(0, ['', '请选择分类'])
+    render_to_json :success => true,
+                   :data    => categories
+  end
+
   def show
 
   end

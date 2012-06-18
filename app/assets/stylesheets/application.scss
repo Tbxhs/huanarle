@@ -195,6 +195,13 @@ body {
 /* ui-datepicker-calendar */
 table.ui-datepicker-calendar td.highlight { border: 1px solid #FF0000; }
 
+/* form popup */
+.newConsumptionForm {
+  background: none repeat scroll 0 0 #F5F3EF;
+  padding: 8px 15px 10px 15px;
+  p.action { border-bottom: 1px solid #CCC; padding: 5px 0px 10px 0px; margin-bottom: 10px; }
+  .newBlankLine { margin-right: 10px; }
+}
 
 
 

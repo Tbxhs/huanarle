@@ -3,9 +3,9 @@
   = stylesheet_link_tag 'fullcalendar.print', :media => 'print'
 
 - content_for :header_js do
-  = javascript_include_tag 'new_record', 'consumption', 'fullcalendar.min'
+  = javascript_include_tag 'new_record', 'fullcalendar.min'
 
-= nav_tab_tag([subjects_path, '消费记录'], [new_subject_path, '新建消费记录'], [subject_categories_path, '设置消费类目'])
+= nav_tab_tag([subjects_path, '消费记录'], [subject_categories_path, '设置消费类目'])
 
 .content_detail
   #calendar

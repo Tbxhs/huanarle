@@ -2,11 +2,90 @@ Spendon.Consumption =
   init : () ->
     me = this
     me.showDetail()
-    me.addNewRecordLine()
-    me.removeRecordLine()
     me.deleteRecord()
-    me.newRecord()
-    $('dl.NewRecordForm').find('input').not('.button').val('')
+    me.newConsumption()
+
+  newConsumption : () ->
+
+    genFormDom = () ->
+      user_categories = Spendon.user_categories;
+      $formDom = $('<div class="newConsumptionForm" />')
+      $action = $('<p class="action"><input class="button newBlankLine" value="增加一列" type="button"/></p>')
+      $blank = $('<div class="blank">')
+      $category = $('<select class="category mr10"><option val="">请选择分类</option></select>')
+      for category in user_categories
+        $option = $('<option>');
+        $option.val(category[0]).text(category[1])
+        $category.append($option)
+      $description = $('<input class="form-text w200 mr10" placeholder="消费项目" />')
+      $cost = $('<img src="/assets/money16.png" class="mr10"/><input class="form-text w100" placeholder="消费金额 0.00" />')
+      $blank.append($category, $description, $cost)
+      $formDom.append($action, $blank)
+      return $formDom
+
+    postNewConsumption = (dialog) ->
+      self = this
+      $('.newConsumptionForm .blank').each ->
+        $this = $(this)
+        $descr = $this.find('input:first')
+        $cost = $this.find('input:last')
+        cost = $cost.val()
+        if $descr.val().length < 1
+          $descr.addClass('error_border') 
+        else
+          $descr.removeClass('error_border') 
+        if cost.length < 1 || isNaN(cost)
+          $cost.addClass('error_border')
+        else
+          $cost.removeClass('error_border')
+
+      if $('.newConsumptionForm').find('.error_border').length == 0
+        consumptions = []
+        $('.newConsumptionForm .blank').each (index) -> 
+          name = $(this).find('input:first').val()
+          decimal = $(this).find('input:last').val()
+          category_id = $(this).find('select').val()
+          consumptions[index] = 
+            name : name
+            decimal : decimal
+            category_id : category_id
+
+        params = { consumptions : consumptions }
+        $loading = $('<img src="/assets/loading.gif" />')
+        $span = $('<span style="font-size:12px;color:green;">消费记录提交成功</span>')
+        $buttonLine = $('.newConsumptionForm').find('.newBlankLine')
+        $buttonLine.next('span').remove()
+        $buttonLine.after($loading)
+        $.post '/subjects', params, (data) ->
+          if data.success
+            $loading.replaceWith $span 
+            $('.newConsumptionForm').find('input:text').val('')
+        , 'json'
+      return false  
+
+
+    $('body').on 'click', 'input.newBlankLine', ->
+      $this = $(this)
+      $form = $this.parents('.newConsumptionForm')
+      $newBlankLine = $form.find('.blank:last').clone()
+      $newBlankLine.find('input').removeClass('error_border').val('')
+      return alert('一次最多能添加5项消费记录') if $form.find('.blank').length >= 5
+      $form.append $newBlankLine 
+
+    $('input.newConsumption').click ->
+      $.dialog 
+        ok : () ->
+          self = this 
+          postNewConsumption(self)
+        id : 'newRecordPop'
+        fixed : true
+        lock : true
+        okValue : '确定'
+        cancel : () ->
+        cancelValue : '取消'
+        content : genFormDom()[0]
+
+
 
   showDetail : () ->
     self = this
@@ -16,24 +95,6 @@ Spendon.Consumption =
         Spendon.dialog $(data.html) 
       , 'json')
       return
-
-  addNewRecordLine : () ->
-    $('dl.new_record_form').on 'click', 'a.add_new_line', () -> 
-      dd_counts = $('dd.blanks').length
-      if dd_counts >= 15
-        alert '一次最多能添加15项消费记录'
-      else
-        $parent = $(this).parents('dd')
-        $dd = $parent.clone()
-        $dd.find('input').val('')
-        $parent.after $dd
-
-  removeRecordLine : () ->
-    $('dl.new_record_form').on 'click', 'a.remove_record_line', () ->
-      if $('dd.blanks').length == 1
-        alert '至少填写一项消费记录'
-      else
-        $(this).parents('dd').remove()
 
   deleteRecord : () -> 
     self = this
@@ -47,77 +108,6 @@ Spendon.Consumption =
         .done (data) ->
           if data.success
             $this.parents('.record_line').remove()      
-
-  newRecord : () ->
-    self = this
-    setStatus = (status = true, $input, msg = '不能为空') ->
-      if status
-        $input.removeClass 'error_border'
-        $input.parent().next().text('').removeClass('error')
-      else
-        $input.addClass 'error_border' 
-        $input.parent().next().text(msg).addClass('error')
-
-    validateDecimal = () ->
-      $inputs = $('input.money');
-      $inputs.each ->
-        $this = $(this)
-        val = $this.val()
-        if !isNaN(val) && val.length > 0
-          $this.removeClass('error_border')
-        else
-          $this.addClass('error_border')
-
-    validateRecordName = () ->
-      $inputs = $('input.description');
-      $inputs.each ->
-        if $(this).val().length < 1
-          $(this).addClass('error_border')
-        else
-          $(this).removeClass('error_border')
-
-    validateTitle = () ->
-      $input = $('input.record_title')
-      val = $input.val()
-      if val.length < 1
-        setStatus(false, $input)
-      else
-        setStatus(true, $input)
-
-    $('input.new_record_submit').click ->
-      # validateTitle()
-      validateRecordName()
-      validateDecimal()
-      consumptions = []
-      $('input.description').each (index) ->
-        name = $(this).val()
-        category_id = $(this).prev().val()
-        decimal = $(this).next().next().val()
-        if name.length > 1 && decimal.length > 1 && $(this).parents('dd').find('.error_border').length < 1
-          consumptions[index] = 
-            name : name
-            decimal : decimal
-            category_id : category_id
-
-      $dd = $('dd.blanks:last').next()
-      if $('dd.blanks').find('.error_border').length > 0
-        $dd.find('p').text('消费项目不能为空 消费金额只能为数字且不能为空').addClass('error')
-      else
-        $dd.find('p').text('')
-
-      params = 
-        title : $('input.record_title').val()
-        remarks : $('textarea.remarks').val()
-        consumptions : consumptions
-
-      if $('.new_record_form').find('.error_border').length == 0
-        $('span.loading').text('提交中...')
-        $.post '/subjects', params, (data) -> 
-          if data.success
-            alert '发表成功！'
-            window.location.reload() 
-        , 'json'
-
 
 
 
