@@ -29,7 +29,8 @@ class BlogsController < ApplicationController
 
   private
   def init_user
-    @user = User.find(params[:user_id]) rescue nil
+    # @user = User.find(params[:user_id]) rescue nil
+    @user = current_user
     return if @user.nil?
   end
 end
