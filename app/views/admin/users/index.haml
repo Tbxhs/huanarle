@@ -1,7 +1,7 @@
 - @users.each do |user|
   %dl{ :class => cycle('odd', 'even') }
     %dd.left= user.login
-    %dd.left= user.weibo_uid || 'none'
+    %dd.left.ml10= user.weibo_uid || 'none'
     %dd.right
       最后登录时间：
       %span= user.last_login_at.strftime('%F %T')
