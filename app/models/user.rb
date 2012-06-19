@@ -73,9 +73,9 @@ class User < ActiveRecord::Base
         user.remote_avatar_url = "#{auth.info.avatar_url}/sample.jpg" # wired or upload remote image will be failed.
         user.weibo_uid = weibo_uid
         user.save!
-        user.sync_to_weibo
       end
       user.update_attributes(:weibo_token => auth.credentials.token, :last_login_at => Time.now)
+      user.sync_to_weibo
       user
     end
 
