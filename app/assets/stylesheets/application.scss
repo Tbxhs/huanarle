@@ -36,21 +36,35 @@ body {
   background: url('no-login-bg.png') repeat scroll 0 0 transparent;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.1) inset;
   text-shadow: 0 3px 3px #000;
+
   .site-name {
     font-size: $large-size;
     margin: 8px 20px;
-    width: 200px;
+    width: 100px;
   }
+
   .site-name a {
     color: $base-color;
     text-decoration: none;
-  }  
+  } 
+
+  ul.navigation {
+    float: left;
+    padding: 12px 16px;
+    list-style: none;
+    font-size: 12px;
+    /*font-size: $mid-size;*/
+    background-color: #222;
+    li a { color: $base-color; text-decoration: none;}
+  }
+
   .settings {
     color: $base-color;
     font-size: $mid-size;
     width: 200px;
     margin: 8px 20px; 
   }
+
 
   .settings > ul {
     display: block;
