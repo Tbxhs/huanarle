@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   def sync_to_weibo
     if self.weibo_token.present?
       Faraday.post 'https://api.weibo.com/2/statuses/update.json', { 
-        :status            => '我连接了 [花哪儿了] ，简单记录日常消费 http://www.huanarle.com',
+        :status            => '花哪儿了，简单记录日常消费 http://www.huanarle.com',
         :access_token      => self.weibo_token
       }
     end
