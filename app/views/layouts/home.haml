@@ -17,9 +17,9 @@
       .header-container
         .site-name.left
           = link_to '花哪儿了', home_path
-        %ul.navigation
-          %li
-            %a{ :href => '#' } 讨论组
+        / %ul.navigation
+        /   %li
+        /     %a{ :href => '#' } 讨论组
         .settings.right
           %ul
             %li
@@ -87,6 +87,8 @@
       .friend_sites
         友情链接：
         %a{ :href => 'http://720p.so', :target => '_blank' } 720p.so
+        &nbsp;&nbsp;
+        %a{ :href => 'http://www.aodi.com', :target => '_blank' } 奥迪车友会
 
     .feedback_btn.feedBack
       反馈建议

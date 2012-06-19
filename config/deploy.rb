@@ -1,10 +1,11 @@
 set :application, "huanarle"
-set :repository,  "laohuang@106.187.99.26:git/app_demo"
+set :repository,  "ssh://laohuang@106.187.99.26/~/sites.git"
 
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :deploy_to, '~/sites/huanarle'
+set :branch, 'master'
 
 server "106.187.99.26", :app, :web, :db, :primary => true
 set :user, 'laohuang'

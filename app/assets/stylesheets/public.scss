@@ -78,8 +78,8 @@ body {
   text-align: center;
   font-size:12px;
   color: $gray;
-  a { color: $base-color; text-decoration: none; font-weight: bold; }
+  a { color: $base-color; text-decoration: none; }
   a:hover { color: $red;}
-  .friend_sites { margin-top: 10px; } 
+  .friend_sites { margin-top: 10px; color: #FEFEFE; } 
 }
 

@@ -157,9 +157,9 @@ body {
   color: #8C8C8C;
   background: url('no-login-bg.png') repeat scroll 0 0 transparent;
   padding: 10px 0px;
-  a { color: #FEFEFE; text-decoration: none; font-weight: bold; }
-  a:hover { color: #FEFEFE;} 
-  .friend_sites { margin-top: 10px; }
+  a { color: #FEFEFE; text-decoration: none; }
+  a:hover { color: #FF0000; } 
+  .friend_sites { margin-top: 10px; color: #FEFEFE; }
 }
 
 /* pagination style */
